@@ -2,7 +2,7 @@ package com.github.yin.spring.crafts.runtime;
 
 public class HelloWorld {
 	private String message;
-	private static int counter = 0;
+	static int counter = 0;
 
 	public HelloWorld() {
 		updateCount();

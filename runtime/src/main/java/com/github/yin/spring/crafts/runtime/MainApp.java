@@ -7,8 +7,10 @@ public class MainApp {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 		HelloWorldPrinter printer = (HelloWorldPrinter) context.getBean("printer");
+		SettingsScope settingsScope = (SettingsScope) context.getBean("settingsScope");
 		printer.print();
 		printer.print();
+		settingsScope.onSettingChange();
 		printer.print();
 		printer.print();
 		checkBeanInstance2x(context, "helloWorldSingleton");

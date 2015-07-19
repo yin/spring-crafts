@@ -7,20 +7,32 @@
     http://www.springframework.org/schema/aop 
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
+    <bean id="settingsScope" class="com.github.yin.spring.crafts.runtime.SettingsScope" />
+
+	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+		<property name="scopes">
+			<map>
+				<entry key="settings">
+                    <ref bean="settingsScope" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
 	<bean id="printer" class="com.github.yin.spring.crafts.runtime.HelloWorldPrinter">
 		<property name="helloWorld" ref="helloWorld" />
 	</bean>
 
-	<bean id="helloWorld" scope="prototype"
+	<bean id="helloWorld" scope="settings"
 		class="com.github.yin.spring.crafts.runtime.HelloWorld">
-		<aop:scoped-proxy/>
+		<aop:scoped-proxy />
 		<property name="message" value="Hello World!" />
 	</bean>
 
-    <!--  Singleton example, this is default scope in spring -->
-    <bean id="helloWorldSingleton" scope="singleton"
-        class="com.github.yin.spring.crafts.runtime.HelloWorld">
-        <property name="message" value="Hello World!" />
-    </bean>
+	<!-- Singleton example, this is default scope in spring -->
+	<bean id="helloWorldSingleton" scope="singleton"
+		class="com.github.yin.spring.crafts.runtime.HelloWorld">
+		<property name="message" value="Hello World!" />
+	</bean>
 
 </beans>
