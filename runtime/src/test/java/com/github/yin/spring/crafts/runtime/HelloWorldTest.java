@@ -15,7 +15,7 @@ public class HelloWorldTest {
 			public void println(String msg) {
 				super.println(msg);
 				// Performing the check in the mock, :(
-				Assert.assertEquals("Should print Message previously set", "Test msg", msg);
+				Assert.assertTrue("Should print message previously set", msg.startsWith("Your Message: Test msg 1"));
 			}
 		});
 		HelloWorldPrinter tested = new HelloWorldPrinter();
@@ -31,7 +31,7 @@ public class HelloWorldTest {
 		HelloWorld tested = new HelloWorld();
 		tested.setMessage("Test msg 2");
 		// Executing the test, effectively
-		Assert.assertEquals("shoult return set message", "Test msg 2", tested.getMessage());
+		Assert.assertTrue("shoult return set message", tested.getMessage().startsWith("Test msg 2"));
 	}
 
 }

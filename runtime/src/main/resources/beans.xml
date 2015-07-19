@@ -13,6 +13,7 @@
 
 	<bean id="helloWorld" scope="prototype"
 		class="com.github.yin.spring.crafts.runtime.HelloWorld">
+		<aop:scoped-proxy/>
 		<property name="message" value="Hello World!" />
 	</bean>
 

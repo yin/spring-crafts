@@ -1,13 +1,22 @@
 package com.github.yin.spring.crafts.runtime;
 
 public class HelloWorld {
-   private String message;
+	private String message;
+	private static int counter = 0;
 
-   public void setMessage(String message){
-      this.message  = message;
-   }
+	public HelloWorld() {
+		updateCount();
+	}
 
-   public String getMessage(){
-	   return message;
-   }
+	private static synchronized void updateCount() {
+		counter++;
+	}
+
+	public void setMessage(String message) {
+		this.message = message + ' ' + counter;
+	}
+
+	public String getMessage() {
+		return message;
+	}
 }
