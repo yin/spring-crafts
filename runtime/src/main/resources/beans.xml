@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
 
-   <bean id="helloWorldSingleton" scope="singleton" class="com.github.yin.spring.crafts.runtime.HelloWorld">
-       <property name="message" value="Hello World!"/>
-   </bean>
+	<bean id="printer" class="com.github.yin.spring.crafts.runtime.HelloWorldPrinter">
+		<property name="helloWorld" ref="helloWorld" />
+	</bean>
 
-   <bean id="helloWorld" scope="prototype" class="com.github.yin.spring.crafts.runtime.HelloWorld">
-       <property name="message" value="Hello World!"/>
-   </bean>
+	<bean id="helloWorld" scope="prototype"
+		class="com.github.yin.spring.crafts.runtime.HelloWorld">
+		<property name="message" value="Hello World!" />
+	</bean>
+
+    <!--  Singleton example, this is default scope in spring -->
+    <bean id="helloWorldSingleton" scope="singleton"
+        class="com.github.yin.spring.crafts.runtime.HelloWorld">
+        <property name="message" value="Hello World!" />
+    </bean>
 
 </beans>
