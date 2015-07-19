@@ -3,11 +3,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.github.yin.soring.crafts</groupId>
+    <groupId>com.github.yin.spring.crafts</groupId>
     <artifactId>spring-crafts-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.github.yin.spring.crafts</groupId>
+  <groupId>com.github.yin.spring.crafts.helloworld</groupId>
   <artifactId>hello-world</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>hello-world</name>
