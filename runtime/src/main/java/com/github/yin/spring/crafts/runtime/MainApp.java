@@ -13,7 +13,6 @@ public class MainApp {
 		settingsScope.onSettingChange();
 		printer.print();
 		printer.print();
-		checkBeanInstance2x(context, "helloWorldSingleton");
 		checkBeanInstance2x(context, "helloWorld");
 	}
 	

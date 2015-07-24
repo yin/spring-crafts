@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/aop 
-    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd 
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-3.0.xsd ">
+
+    <util:properties location="config.properties" id="properties" >
+    </util:properties>
 
     <bean id="settingsScope" class="com.github.yin.spring.crafts.runtime.SettingsScope" />
 
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
 			<map>
-				<entry key="settings">
-                    <ref bean="settingsScope" />
-				</entry>
+				<entry key="settings" value-ref="settingsScope" />
 			</map>
 		</property>
 	</bean>
 
+
+    <!-- printer is a singleton, which is the default scope in Spring -->    
 	<bean id="printer" class="com.github.yin.spring.crafts.runtime.HelloWorldPrinter">
 		<property name="helloWorld" ref="helloWorld" />
 	</bean>
@@ -26,13 +33,6 @@
 	<bean id="helloWorld" scope="settings"
 		class="com.github.yin.spring.crafts.runtime.HelloWorld">
 		<aop:scoped-proxy />
-		<property name="message" value="Hello World!" />
+		<property name="message" value="${helloworld.message}" />
 	</bean>
-
-	<!-- Singleton example, this is default scope in spring -->
-	<bean id="helloWorldSingleton" scope="singleton"
-		class="com.github.yin.spring.crafts.runtime.HelloWorld">
-		<property name="message" value="Hello World!" />
-	</bean>
-
 </beans>
